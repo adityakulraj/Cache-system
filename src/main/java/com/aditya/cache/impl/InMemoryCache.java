@@ -24,7 +24,7 @@ public class InMemoryCache implements Cache {
 
     public InMemoryCache(int capacity) {
         inMemoryDAO = new InMemoryDAO(new HashMap<>());
-        es = new LeastRecentlyUsedStrategy(inMemoryDAO.getDataStructure());
+        es = new EvictionStrategyFactory("default", inMemoryDAO).getEvictionStrategy();
         this.capacity = capacity;
     }
 
